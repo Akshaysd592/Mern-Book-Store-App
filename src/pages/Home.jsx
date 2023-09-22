@@ -8,6 +8,7 @@ import {BsInfoCircle} from 'react-icons/bs';
 import {MdOutlineAddBox , MdOutlineDelete} from 'react-icons/md';
 import BookTable from '../components/Home/BookTable';
 import BookCards from '../components/Home/BookCards';
+const BASE_URL = process.env.BASE_URL;
 
 
 
@@ -18,7 +19,7 @@ const Home = () => {
 
     useEffect(()=>{
         setLoading(true);
-        axios.get('http://localhost:5555/book/')
+        axios.get(`${BASE_URL}/book/`)
         .then((response)=>{
                 // console.log(response.data)
                 console.log("before call",response.data.data)

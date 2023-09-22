@@ -12,10 +12,11 @@ const EditBook = () => {
   const [loading , setLoading] = useState(false);
   const navigate = useNavigate();
   const {enqueueSnackbar} = useSnackbar();
+  const BASE_URL = process.env.BASE_URL;
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true);
-    axios.get(`http://localhost:5555/book/${id}`)
+    axios.get(`${BASE_URL}/book/${id}`)
     .then((response)=>{
       setTitle(response.data.title);
       setAuthor(response.data.author);
@@ -41,7 +42,7 @@ const EditBook = () => {
       publishYear,
     };
     setLoading(true);
-    axios.put(`http://localhost:5555/book/${id}`,data)
+    axios.put(`${BASE_URL}/book/${id}`,data)
     .then(()=>{
       setLoading(true);
       enqueueSnackbar('Book Edited Successfully',{variant:'success'})
