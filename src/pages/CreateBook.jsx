@@ -3,7 +3,9 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const BASE_URL = process.env.BASE_URL;
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const BASE_URL = env.BASE_URL;
 import { enqueueSnackbar, useSnackbar } from 'notistack';
 
 const CreateBook = () => {
@@ -21,7 +23,7 @@ const CreateBook = () => {
       publishYear,
     };
     setLoading(true);
-    axios.post(`${BASE_URL}/book`,data)
+    axios.post(`${import.meta.env.VITE_BASE_URL}/book`,data)
     .then(()=>{
       setLoading(false);
       enqueueSnackbar('Book Created Successfully',{variant:'success'})

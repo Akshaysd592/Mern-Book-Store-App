@@ -8,18 +8,21 @@ import {BsInfoCircle} from 'react-icons/bs';
 import {MdOutlineAddBox , MdOutlineDelete} from 'react-icons/md';
 import BookTable from '../components/Home/BookTable';
 import BookCards from '../components/Home/BookCards';
-const BASE_URL = process.env.BASE_URL;
-
-
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const BASE_URL = process.env.BASE_URL;
+// import.meta.env.VITE_BASE_URL;
 
 const Home = () => {
     const [books,setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showType, setShowType] = useState('card');
+    // const BASE_URL = process.env.BASE_URL;
+    
 
     useEffect(()=>{
         setLoading(true);
-        axios.get(`${BASE_URL}/book/`)
+        axios.get(`${import.meta.env.VITE_BASE_URL}/book/`)
         .then((response)=>{
                 // console.log(response.data)
                 console.log("before call",response.data.data)

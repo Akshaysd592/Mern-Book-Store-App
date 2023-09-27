@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { enqueueSnackbar, useSnackbar } from 'notistack';
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const BASE_URL = env.BASE_URL;
 const EditBook = () => {
   const[title,setTitle]  = useState('');
   const[author,setAuthor] = useState('');
@@ -12,11 +15,11 @@ const EditBook = () => {
   const [loading , setLoading] = useState(false);
   const navigate = useNavigate();
   const {enqueueSnackbar} = useSnackbar();
-  const BASE_URL = process.env.BASE_URL;
+ 
   const {id} = useParams();
   useEffect(()=>{
     setLoading(true);
-    axios.get(`${BASE_URL}/book/${id}`)
+    axios.get(`${import.meta.env.VITE_BASE_URL}/book/${id}`)
     .then((response)=>{
       setTitle(response.data.title);
       setAuthor(response.data.author);
@@ -42,7 +45,7 @@ const EditBook = () => {
       publishYear,
     };
     setLoading(true);
-    axios.put(`${BASE_URL}/book/${id}`,data)
+    axios.put(`${import.meta.env.VITE_BASE_URL}/book/${id}`,data)
     .then(()=>{
       setLoading(true);
       enqueueSnackbar('Book Edited Successfully',{variant:'success'})

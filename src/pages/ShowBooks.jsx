@@ -4,8 +4,6 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
-import nodemon from 'nodemon';
-const BASE_URL = process.env.BASE_URL;
 
 const ShowBooks = () => {
     const [book , setBook] = useState([]);
@@ -14,7 +12,7 @@ const ShowBooks = () => {
 
     useEffect(()=>{
         setLoading(true);
-        axios.get(`${BASE_URL}/book/${id}`)
+        axios.get(`${import.meta.env.VITE_BASE_URL}/book/${id}`) 
         .then((response)=>{
             setBook(response.data);
             setLoading(false);
